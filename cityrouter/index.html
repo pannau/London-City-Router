@@ -1,0 +1,219 @@
+<!-- ============================================================================
+
+THIS IS A FICTIONAL WEBSITE- DEMONSTRATING TFL API CALL AND AJAX REQUEST
+
+============================================================================ -->
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>City Bus Routes</title>
+        <meta charset="utf-8">
+        <!-- TELLS MOBILE PHONES NOT TO LIE ABOUT THEIR TRUE WIDTH -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <!-- FAVOURITE ICON OR FAVICON LINK -->
+        <link rel="shortcut icon" href="img2/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="img2/favicon.ico" type="image/x-icon">
+        <!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ek+Mukta" 				rel="stylesheet">
+		<!-- BOOTSTRAP CDN -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- FONT AWESOME CDN FOR ICONS -->
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <!-- ANIMATE.CSS CDN FOR ANIMATION -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+        <!-- CSS RESET NORMALIZE -->
+        <link href="css/normalize.css" rel="stylesheet" type="text/css">
+        <!-- MY OWN CSS -->
+        <link href="css/myStylesFinal.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body>
+            
+        <!-- HOME SECTION ================================================== -->
+        
+        <section id="home" class="section1 homeBgImage">
+            <header>
+
+        <!-- NAVIGATION SECTION =========================================== -->
+                    
+                <!--<div class="navC wow fadeInDown" data-wow-delay="0.2s">-->
+                <div class="navC">
+                    <span class="navBtn">&#9868;</span>
+                    <nav>
+                        <ul id="mainMenu" class="menu-items">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#route">Route Planner</a></li>
+                        </ul>
+                    </nav>
+                </div>
+         	</header>
+                    
+        <!-- NAVIGATION SECTION ENDS ==================================== -->
+               
+            <div class="slogan">London<br>City Router</div>
+			<div class="sub-heading">A Journey Less Traveled</div>
+			<div class="arrow bounce">
+  				<a class="fa fa-arrow-down fa-3x" href="#route"></a>
+			</div>
+			<!--<div class="socialMedia">
+                <a class="smLogo" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a class="smLogo" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a class="smLogo" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a class="smLogo" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </div>-->
+        </section>
+   
+        <!-- HOME SECTION ENDS ========================================= -->    
+                
+        
+        
+        <!-- ROUTE PLANNER SECTION ========================================== -->
+        
+        <section id="route" class="container section2">
+            <h1 class="products">Route Planner</h1>
+            <p class="productsP">Find the easiest Route to your destination!</p>
+			
+			<div class="container-flex">
+				<div id="main-content">
+            		<div class="jumbotron">
+						
+            			<div class="row">       
+            				<div class="col-md-6 leftC">    
+								<h4>Enter Your Departure Postcode</h4>       
+								<input type="text" id="depPC" class="busNumber corners"/><br />      
+								<div id="messageD" class="data"></div>
+                 				<br>
+							</div>
+							<div class="col-md-6 leftC"> 
+								 <h4>Enter Your Arrival Postcode</h4>
+								 <input type="text" id="arrPC" class="busNumber corners"/><br />
+								 <div id="messageA" class="data"></div>
+                 				 <br><br>
+							</div>
+							<div class="col-md-12 leftC"> 
+								<button id="mySubmit" type="button" class="submitQ corners"><i class="fas fa-search"></i>SUBMIT</button>
+								 <button id="mySwitch" type="button" class="submitQ corners"><i class="fas fa-exchange-alt"></i>SWITCH</button>
+                 				 <br><br><br><br>
+                 				 <hr>
+							</div>
+             
+                
+                			<div class="col-md-12 col-md-offset-2 rightC">
+								<div class="btn-group" role="group" aria-label="Route Options">
+								  <button id="option1" type="button" class="refreshW corners">Route 1</button>
+								  <button id="option2"type="button" class="refreshW corners">Route 2</button>
+								  <!--<button id="option3" type="button" class="refreshW corners">Option 3</button>-->
+								</div>
+								<hr>
+  
+                    
+                    			<h4>Journey Duration</h4>
+                 				<div id="journeyD" class="durationMinutes"></div>
+                    			<br>
+                 				<span><strong>DEPARTURE</strong><br>
+                     			</span><span id="startDT" class="timeDate"></span><br>
+                    			<br>
+                    			<span><strong>ARRIVAL</strong><br>
+								</span><span id="arrivalDT" class="timeDate"></span>
+                				<br>
+                    			<hr>
+                    
+                    			<h4>Journey Summary</h4>
+                 				<div class="listItems">
+                     				<span id="stepsD"></span>
+                				</div>
+                    			<hr>
+                			</div>
+                
+							<div class="row">
+							<div id="googleMap" class="col-md-10 col-md-offset-1 googleMapC">
+								<h4>Alternative Route By Car</h4>
+								<iframe id="myGoogleMap" class="mapFormat"></iframe></div>
+							</div>
+           				</div> 
+            		</div>
+        		</div>
+			
+		<!--Pop-up Modal code starts here-->
+            
+         <!--	<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content modal-popup">
+							<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+                			<div class="row">
+                				<div class="col-md-12 modalh3"><h3></h3>
+                					<hr>    
+                				</div>
+                			</div>
+                			<div class="row">  
+                				<h4>Description</h4>
+                				<div id="fullD" class="col-md-12 modalh4">
+                    		</div>
+                		</div>
+						<div class="row">
+							<h4>More Info</h4>
+						<div id="fullL" class="col-md-12 modalh4">
+                    </div>
+                    <br><br>
+                    <div><button class="btn btn-default btn-lg" type="button"  class="btn btn-default" data-dismiss="modal">Close</button></div>
+                </div> 
+			</div>
+		</div>
+	</div>-->
+			</div>       
+        </section>
+
+        <!-- ROUTE PLANNER SECTIONS ENDS ======================================= -->
+        
+            
+        <!-- FOOTER ===================================================== -->
+        <footer>
+            <!--<div class="socialMedia">
+                <a class="smLogo" href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a class="smLogo" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a><a class="smLogo" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a class="smLogo" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            </div>-->
+            <div class="footerD">
+                <span>&copy; 2018 London City Router</span>
+            </div> 
+        </footer>
+
+        <!-- FOOTER ENDS ================================================== -->
+        
+        
+        <!-- LINKING MAIN AND  EXTERNAL SCRIPTS =========================== -->
+        
+        <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous">
+        </script>
+
+        <script src="../AssessmentFinal/js/wow.min.js"></script>
+        <script>
+            new WOW().init();
+        </script>
+		
+		<script    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmMvTmEhXb5e_0oApgFZucVz9m9KzHdRg&callback=initMap">
+        </script>
+		
+		<script src="js/myTFLJourneyJS.js"></script>
+		
+		<script src="js/myScriptFinal.js"></script>
+        
+        <!-- LINKING MAIN AND  EXTERNAL SCRIPTS ENDS ===================== -->
+        
+    </body>
+    
+</html>
+
+
+
+
